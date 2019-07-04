@@ -1,0 +1,10 @@
+saldoTotalDisponivel\n
+desambigCartao
+desambigDesbloqueioCartao
+
+informacoesGerais
+desambigChaveSeguranca
+desambigExtrato
+desambigTipoSenha
+desambigLimites
+desambigAcessoAConta
