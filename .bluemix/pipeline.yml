@@ -108,6 +108,12 @@ stages:
     stage: Pull
     job: Pull
     dir_name: null
+  properties:
+  - name: API_BASE_URLS
+    value: ${API_BASE_URLS_HOM}
+  - name: API_KEYS
+    value: ${API_KEYS_HOM}
+    type: secure
   triggers:
   - type: stage
   permission:
@@ -142,6 +148,7 @@ stages:
           echo "Looking for workspace with name ${WORKSPACE_NAME}_HOMOL at $API_BASE_URL" 
           curl -u "apikey":"${API_KEY_TRG[$i]}" "$API_BASE_URL/v1/workspaces?version=2018-09-20" > workspaces.json
           export TARGET_WORKSPACE_ID=$(jq -r ".workspaces[] | select(.name == \"${WORKSPACE_NAME}_HOMOL\") | .workspace_id" workspaces.json)
+          export API_KEY=$API_KEY_TRG[$i]
 
           i=$(( i + 1))
       done

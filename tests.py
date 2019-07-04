@@ -13,7 +13,7 @@ import requests
 import sys
 
 wksp_id = getenv("TARGET_WORKSPACE_ID", "")
-apikey = getenv("API_KEY_TRG[0]", "")
+apikey = getenv("API_KEY", "")
 user = "apikey"
 inputs = []
 outputs = []
