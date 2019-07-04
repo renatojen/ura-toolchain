@@ -1,0 +1,91 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Watson Assistant Deployment",
+    "description": "Implementa o export e import de uma workspace entre instancias do Watson Assistant",
+    "longDescription": "Implementa o export e import de uma workspace entre instancias do Watson Assistant",
+    "type": "object",
+    "properties": {
+        "workspace-name": {
+            "description": "Nome da workspace",
+            "type": "string"
+        }, 
+        "api-key-dev": {
+            "description": "API Key do ambiente origem",
+            "type": "string"
+        },
+        "api-url": {
+            "description": "URL do servico Watson origem",
+            "type": "string"
+        },
+        "api-keys": {
+            "description": "API Keys das instancias de Producao (entre espacos)",
+            "type": "string"
+        },
+        "api-base-urls": {
+            "description": "URLs das instancias de Producao (entre espacos)",
+            "type": "string"
+        },
+        "api-keys-hom": {
+            "description": "API Keys das instancias de Homologacao (entre espacos)",
+            "type": "string"
+        },
+        "api-base-urls-hom": {
+            "description": "URLs das instancias de Homologacao (entre espacos)",
+            "type": "string"
+        }
+    },
+    "required": [
+        "api-key-dev",
+        "api-url",
+        "api-keys",
+        "api-base-urls",
+        "workspace-name",
+        "api-keys-hom",
+        "api-base-urls-hom"
+    ],
+    "form": [
+        {
+            "type": "string",
+            "readonly": false,
+            "title": "Nome da workspace",
+            "key": "workspace-name"
+        },  
+        {
+	        "type": "string",
+	        "readonly": false,
+	        "title": "URL do servico Watson origem" ,
+	        "key": "api-url"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": "API Key do ambiente origem",
+            "key": "api-key-dev"
+        },
+        {
+	        "type": "string",
+	        "readonly": false,
+	        "title": "URLs das instancias de Homologacao (entre espacos)" ,
+	        "key": "api-base-urls-hom"
+        },
+        {
+	        "type": "password",
+	        "readonly": false,
+	        "title": "API Keys das instancias de Homologacao (entre espacos)" ,
+	        "key": "api-keys-hom"
+        },
+        {
+	        "type": "string",
+	        "readonly": false,
+	        "title": "URLs das instancias de Producao (entre espacos)" ,
+	        "key": "api-base-urls"
+        },
+        {
+	        "type": "password",
+	        "readonly": false,
+	        "title": "API Keys das instancias de Producao (entre espacos)" ,
+	        "key": "api-keys"
+        }
+       
+    ]
+}

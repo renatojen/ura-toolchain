@@ -1,0 +1,49 @@
+version: '2'
+messages:
+template:
+  name: "Watson Assistant Deployment"
+  description: "Implementa o export/import entre workspaces do WA"
+  required:
+    - sample-build
+  info:
+    git url: >-
+      [https://github.com/renatojen/ura-toolchain](https://github.com/renatojen/ura-toolchain)
+    git branch: >-
+      [master](https://github.com/renatojen/ura-toolchain)
+toolchain:
+  name: 'ura-toolchain-{{timestamp}}'
+services:
+  repo:
+    service_id: 'hostedgit'
+    parameters:
+      repo_name: '{{toolchain.name}}'
+      repo_url: >
+        $env.type === 'link' ? 
+          $env.app_repo : 'https://github.com/renatojen/ura-toolchain'
+      source_repo_url: >
+        $env.type === 'fork' || $env.type === 'clone' ? 
+          $env.app_repo : 'https://github.com/renatojen/ura-toolchain'
+      type: $env.type || 'clone'
+  sample-build:
+    service_id: pipeline
+    parameters:
+      name: 'ura-deploy-pipeline'
+      services:
+        - repo
+      ui-pipeline: true
+      configuration:
+        content:
+          $text: pipeline.yml
+        env:
+          WORKSPACE_NAME: '{{form.pipeline.parameters.workspace-name}}' 
+          API_KEY_DEV:    '{{form.pipeline.parameters.api-key-dev}}'
+          API_URL:        '{{form.pipeline.parameters.api-url}}'
+          API_BASE_URLS:  '{{form.pipeline.parameters.api-base-urls}}'
+          API_KEYS:       '{{form.pipeline.parameters.api-keys}}'
+          API_BASE_URLS_HOM: '{{form.pipeline.parameters.api-base-urls-hom}}'
+          API_KEYS_HOM:   '{{form.pipeline.parameters.api-keys-hom}}'
+        execute: false
+form:
+  pipeline:
+    schema:
+      $ref: deploy.json
