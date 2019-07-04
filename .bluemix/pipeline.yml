@@ -148,13 +148,11 @@ stages:
           echo "Looking for workspace with name ${WORKSPACE_NAME}_HOMOL at $API_BASE_URL" 
           curl -u "apikey":"${API_KEY_TRG[$i]}" "$API_BASE_URL/v1/workspaces?version=2018-09-20" > workspaces.json
           export TARGET_WORKSPACE_ID=$(jq -r ".workspaces[] | select(.name == \"${WORKSPACE_NAME}_HOMOL\") | .workspace_id" workspaces.json)
-          export API_KEY=$API_KEY_TRG[$i]
+          export API_KEY="${API_KEY_TRG[$i]}"
 
           i=$(( i + 1))
       done
-
-      ls -la
-      ls ../ -la
+      
       echo "Running tests.py";
       python3 tests.py;
     test_type: simple
