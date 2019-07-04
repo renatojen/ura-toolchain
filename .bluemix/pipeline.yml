@@ -152,7 +152,7 @@ stages:
 
           i=$(( i + 1))
       done
-      
+
       echo "Running tests.py";
       python3 tests.py;
     test_type: simple
@@ -195,7 +195,7 @@ stages:
           export TARGET_WORKSPACE_ID=$(jq -r ".workspaces[] | select(.name == \"${WORKSPACE_NAME}_PROD\") | .workspace_id" workspaces.json)
           
           # Replace template name into JSON
-          sed -i -e 's,'"${WORKSPACE_NAME}_DEV,${WORKSPACE_NAME}_PROD"',g' export.json
+          sed -i -e 's,'"${WORKSPACE_NAME},${WORKSPACE_NAME}_PROD"',g' export.json
           echo "Target workspace ID is $TARGET_WORKSPACE_ID"
           echo "Importing workspace $TARGET_WORKSPACE_ID..."
           
